@@ -1,0 +1,29 @@
+<h1>Listing mer20s</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Sequence</th>
+      <th>Strand</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @mer20s.each do |mer20| %>
+      <tr>
+        <td><%= mer20.sequence %></td>
+        <td><%= mer20.strand %></td>
+        <td><%= link_to 'Show', mer20 %></td>
+        <td><%= link_to 'Edit', edit_mer20_path(mer20) %></td>
+        <td><%= link_to 'Destroy', mer20, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Mer20', new_mer20_path %>

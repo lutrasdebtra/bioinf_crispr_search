@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  sequence: MyString
+  strand: MyString
+  mer20_id: 1
+
+two:
+  sequence: MyString
+  strand: MyString
+  mer20_id: 1
