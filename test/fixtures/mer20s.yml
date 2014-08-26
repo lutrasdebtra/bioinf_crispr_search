@@ -2,8 +2,12 @@
 
 one:
   sequence: MyString
-  strand: MyString
+  leading: MyString
+  lagging: MyString
+  genome_id: 1
 
 two:
   sequence: MyString
-  strand: MyString
+  leading: MyString
+  lagging: MyString
+  genome_id: 1

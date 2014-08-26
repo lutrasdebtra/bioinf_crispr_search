@@ -69,6 +69,6 @@ class Mer20sController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def mer20_params
-      params.require(:mer20).permit(:sequence, :strand, mer14_attributes: [:id, :mer20_id, :sequence, :strand])
+      params.require(:mer20).permit(:sequence, :leading, :lagging, :genome_id, mer14_files_attributes: [:id, :mer20_id, :sequence, :leading, :lagging, :_destroy])
     end
 end

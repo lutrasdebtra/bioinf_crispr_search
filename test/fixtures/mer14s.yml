@@ -2,10 +2,12 @@
 
 one:
   sequence: MyString
-  strand: MyString
+  leading: MyString
+  lagging: MyString
   mer20_id: 1
 
 two:
   sequence: MyString
-  strand: MyString
+  leading: MyString
+  lagging: MyString
   mer20_id: 1

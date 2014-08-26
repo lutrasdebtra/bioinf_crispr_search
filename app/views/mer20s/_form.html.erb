@@ -16,8 +16,16 @@
     <%= f.text_field :sequence %>
   </div>
   <div class="field">
-    <%= f.label :strand %><br>
-    <%= f.text_field :strand %>
+    <%= f.label :leading %><br>
+    <%= f.text_field :leading %>
+  </div>
+  <div class="field">
+    <%= f.label :lagging %><br>
+    <%= f.text_field :lagging %>
+  </div>
+  <div class="field">
+    <%= f.label :genome_id %><br>
+    <%= f.number_field :genome_id %>
   </div>
   <div class="actions">
     <%= f.submit %>

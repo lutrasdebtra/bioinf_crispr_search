@@ -18,7 +18,7 @@ class Mer20sControllerTest < ActionController::TestCase
 
   test "should create mer20" do
     assert_difference('Mer20.count') do
-      post :create, mer20: { sequence: @mer20.sequence, strand: @mer20.strand }
+      post :create, mer20: { genome_id: @mer20.genome_id, lagging: @mer20.lagging, leading: @mer20.leading, sequence: @mer20.sequence }
     end
 
     assert_redirected_to mer20_path(assigns(:mer20))
@@ -35,7 +35,7 @@ class Mer20sControllerTest < ActionController::TestCase
   end
 
   test "should update mer20" do
-    patch :update, id: @mer20, mer20: { sequence: @mer20.sequence, strand: @mer20.strand }
+    patch :update, id: @mer20, mer20: { genome_id: @mer20.genome_id, lagging: @mer20.lagging, leading: @mer20.leading, sequence: @mer20.sequence }
     assert_redirected_to mer20_path(assigns(:mer20))
   end
 
