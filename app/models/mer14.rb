@@ -18,4 +18,10 @@ class Mer14 < ActiveRecord::Base
       end
       return getChildren(mer)
   	end
+
+  	def self.splitStarts(starts)
+  	  if starts
+  	    return starts.gsub! "|", ",\n" 
+  	  end
+  	end
 end
