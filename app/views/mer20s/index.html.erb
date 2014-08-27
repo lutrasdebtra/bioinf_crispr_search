@@ -1,3 +1,5 @@
+<% if @mer20s %>
+
 <h1>Listing mer20s</h1>
 
 <table>
@@ -6,7 +8,6 @@
       <th>Sequence</th>
       <th>Leading</th>
       <th>Lagging</th>
-      <th>Genome</th>
     </tr>
   </thead>
 
@@ -16,10 +17,9 @@
         <td><%= mer20.sequence %></td>
         <td><%= mer20.leading %></td>
         <td><%= mer20.lagging %></td>
-        <td><%= mer20.genome_id %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
+<% end %>

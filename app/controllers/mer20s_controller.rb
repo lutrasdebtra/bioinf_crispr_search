@@ -4,8 +4,19 @@ class Mer20sController < ApplicationController
   # GET /mer20s
   # GET /mer20s.json
   def index
+    genome = 0
+    if params[:search_DSM] and params[:search_LZ]
+      genome = 0
+    elsif params[:search_DSM]
+      genome = 1
+    elsif params[:search_LZ]
+      genome = 2
     if params[:search]
-      @mer20s = Mer20.search(params[:search]).order("created_at DESC")
+      if params[:search].length == 23
+        @mer20s = Mer20.search(params[:search], genome).order("created_at DESC")
+      elsif params[:search].length == 14
+        @mer20s = Mer14.search(params[:search], genome).order("created_at DESC")
+      end
     else
       @mer20s = Mer20.order("created_at DESC")
     end

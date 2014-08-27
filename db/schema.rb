@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140820010913) do
+ActiveRecord::Schema.define(version: 20140827013109) do
 
   create_table "genomes", force: true do |t|
     t.string   "name"
@@ -20,19 +20,20 @@ ActiveRecord::Schema.define(version: 20140820010913) do
   end
 
   create_table "mer14s", force: true do |t|
-    t.string "sequence"
-    t.string "leading"
-    t.string "lagging"
+    t.string   "sequence"
+    t.string   "leading"
+    t.string   "lagging"
     t.integer  "mer20_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "genome_id"
   end
 
   create_table "mer20s", force: true do |t|
-    t.string "sequence"
-    t.string "leading"
-    t.string "lagging"
-    t.integer "genome_id"
+    t.string   "sequence"
+    t.string   "leading"
+    t.string   "lagging"
+    t.integer  "genome_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
