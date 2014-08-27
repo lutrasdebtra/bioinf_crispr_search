@@ -1,25 +1,29 @@
-<% if @mer20s %>
+<% if @mers %>
 
-<h1>Listing mer20s</h1>
+  <h1>Results</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Sequence</th>
-      <th>Leading</th>
-      <th>Lagging</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @mer20s.each do |mer20| %>
+  <table class = "table table-hover">
+    <thead>
       <tr>
-        <td><%= mer20.sequence %></td>
-        <td><%= mer20.leading %></td>
-        <td><%= mer20.lagging %></td>
+        <th>Sequence</th>
+        <th>Leading</th>
+        <th>Lagging</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody>
+      <% @mers.each do |mer| %>
+        <% if mer.sequence == params[:search] %>
+          <tr class = "success">
+        <% else %>
+          <tr>
+        <% end %>
+          <td><%= mer.sequence %></td>
+          <td><%= mer.leading %></td>
+          <td><%= mer.lagging %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
 <% end %>

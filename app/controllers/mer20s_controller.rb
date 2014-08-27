@@ -11,14 +11,18 @@ class Mer20sController < ApplicationController
       genome = 1
     elsif params[:search_LZ]
       genome = 2
+    end 
+
     if params[:search]
       if params[:search].length == 23
-        @mer20s = Mer20.search(params[:search], genome).order("created_at DESC")
+        @mers = Mer20.search(params[:search], genome)
       elsif params[:search].length == 14
-        @mer20s = Mer14.search(params[:search], genome).order("created_at DESC")
+        @mers = Mer14.search(params[:search], genome)
+      else
+        flash.now[:alert] = 'Incorrect search - Seek help'
       end
     else
-      @mer20s = Mer20.order("created_at DESC")
+      @mers = Mer20.order("created_at DESC")
     end
   end
 
