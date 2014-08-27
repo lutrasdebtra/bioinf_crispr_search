@@ -1,6 +1,8 @@
 BioinfCrisprSearch::Application.routes.draw do
   resources :mer20s
 
+  root "mer20s#index"
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

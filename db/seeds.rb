@@ -9,7 +9,6 @@
 require 'csv'
 
 puts 'DSM'
-
 sequence_20 = ''
 genome = Genome.create!(:name => 'DSM10061')
 CSV.foreach(Rails.root.join('lib','data','DSM10061.csv'), :headers => :first_row) do |row|

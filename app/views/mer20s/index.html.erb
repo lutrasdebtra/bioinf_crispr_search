@@ -7,9 +7,6 @@
       <th>Leading</th>
       <th>Lagging</th>
       <th>Genome</th>
-      <th></th>
-      <th></th>
-      <th></th>
     </tr>
   </thead>
 
@@ -20,14 +17,9 @@
         <td><%= mer20.leading %></td>
         <td><%= mer20.lagging %></td>
         <td><%= mer20.genome_id %></td>
-        <td><%= link_to 'Show', mer20 %></td>
-        <td><%= link_to 'Edit', edit_mer20_path(mer20) %></td>
-        <td><%= link_to 'Destroy', mer20, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New Mer20', new_mer20_path %>

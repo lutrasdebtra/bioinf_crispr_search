@@ -4,7 +4,11 @@ class Mer20sController < ApplicationController
   # GET /mer20s
   # GET /mer20s.json
   def index
-    @mer20s = Mer20.all
+    if params[:search]
+      @mer20s = Mer20.search(params[:search]).order("created_at DESC")
+    else
+      @mer20s = Mer20.order("created_at DESC")
+    end
   end
 
   # GET /mer20s/1
