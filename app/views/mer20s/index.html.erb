@@ -13,14 +13,14 @@
 
     <tbody>
       <% @mers.each do |mer| %>
-        <% if mer.sequence == params[:search] %>
+        <% if mer.sequence == params[:search]  or mer.leading == params[:search] or mer.lagging == params[:search]%>
           <tr class = "success">
         <% else %>
           <tr>
         <% end %>
           <td><%= mer.sequence %></td>
-          <td><%= Mer20.splitStarts(mer.leading) %></td>
-          <td><%= Mer20.splitStarts(mer.lagging) %></td>
+          <td class="col-md-4"><%= Genome.splitStarts(mer.leading) %></td>
+          <td class="col-md-4"><%= Genome.splitStarts(mer.lagging) %></td>
         </tr>
       <% end %>
     </tbody>

@@ -5,24 +5,29 @@ class Mer20sController < ApplicationController
   # GET /mer20s.json
   def index
     genome = 0
+    if params[:search_DSM]
+      genome = 1
+    end
+    if params[:search_LZ]
+      genome = 2
+    end
     if params[:search_DSM] and params[:search_LZ]
       genome = 0
-    elsif params[:search_DSM]
-      genome = 1
-    elsif params[:search_LZ]
-      genome = 2
     end 
 
     if params[:search]
       if params[:search].length == 23
-        @mers = Mer20.search(params[:search], genome)
+        @mers = Mer20.search_mer(params[:search], genome)
       elsif params[:search].length == 14
-        @mers = Mer14.search(params[:search], genome)
+        @mers = Mer14.search_mer(params[:search], genome)
+      elsif (params[:search] =~ /\A\d+\z/ ? true : false) 
+        @mers = Mer20.start_search(params[:search], genome)
+        if @mers.length == 0
+          @mers = Mer14.start_search(params[:search], genome)
+        end
       else
         flash.now[:alert] = 'Incorrect search - Seek help'
       end
-    else
-      @mers = Mer20.order("created_at DESC")
     end
   end
 

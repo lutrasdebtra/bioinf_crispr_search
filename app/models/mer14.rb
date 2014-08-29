@@ -1,27 +1,22 @@
 class Mer14 < ActiveRecord::Base
 	belongs_to :mer20
 
-
-	def self.getChildren(mer)
-  		set = []
-  		mer.each do |m|
-  			set += Mer20.getChildren(Mer20.find(m.mer20_id))
-  		end
-  		return set
-  	end
-
-	def self.search(query, genome)
+	def self.search_mer(query, genome)
       if genome == 0
-        mer = where("sequence like ?", "%#{query}%") 
+      	mer = where("sequence = ?", query) 
       else 
-      	mer = where("genome_id like ?", "%#{genome}").where("sequence like ?", "%#{query}%") 
+      	mer = where("genome_id = ?", genome.to_i).where("sequence = ?", query) 
       end
-      return getChildren(mer)
+      return Genome.getRelation(mer)
   	end
 
-  	def self.splitStarts(starts)
-  	  if starts
-  	    return starts.gsub! "|", ",\n" 
-  	  end
+  	def self.start_search(query, genome)
+      if genome == 0
+      	mer = where("leading = ? OR lagging = ? OR leading like ? OR lagging like ? OR leading like ? OR lagging like ? OR leading like ? OR lagging like ?", query.to_i, query.to_i, "#{query}|%", "#{query}|%", "%|#{query}|%", "%|#{query}|%", "%|#{query}", "%|#{query}") 
+      else 
+      	mer = where("genome_id = ?", genome.to_i).where("leading = ? OR lagging = ? OR leading like ? OR lagging like ? OR leading like ? OR lagging like ? OR leading like ? OR lagging like ?", query.to_i, query.to_i, "#{query}|%", "#{query}|%", "%|#{query}|%", "%|#{query}|%", "%|#{query}", "%|#{query}") 
+      end
+
+      return Genome.getRelation(mer)
   	end
 end
