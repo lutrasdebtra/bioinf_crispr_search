@@ -1,8 +1,8 @@
 class Mer20sController < ApplicationController
   before_action :set_mer20, only: [:show, :edit, :update, :destroy]
 
-  # GET /mer20s
-  # GET /mer20s.json
+  # POST /mer20s
+  # POST /mer20s.json
   def index
     genome = 0
     if params[:search_DSM]
@@ -16,21 +16,19 @@ class Mer20sController < ApplicationController
     end 
 
     if params[:search]
-      if params[:search].length == 23
-        @mers = Mer20.search_mer(params[:search].upcase!, genome)
-      elsif params[:search].length == 14
-        @mers = Mer14.search_mer(params[:search].upcase!, genome)
-      elsif (params[:search] =~ /\A\d+\z/ ? true : false) 
-        @mers = Mer20.start_search(params[:search], genome)
-        if @mers.length == 0
-          @mers = Mer14.start_search(params[:search], genome)
-        end
-      elsif (params[:search] =~ /\A\d+\s\-\s\d+\z/ ? true : false)
-        queries = params[:search].strip.split(/\s+/)
-        @mers = Mer14.range_search(queries[0].to_i, queries[2].to_i, genome)
-      elsif (params[:search] =~ /\A[ATCGatcg\W]+\z/ ? true : false)
-        @mers = Mer14.sequence_search(params[:search].gsub!(/\W/, "").upcase!, genome)
-      else
+      case 
+        when (params[:search] =~ /\A\d+\z/ ? true : false) 
+          @mers = Mer20.start_search(params[:search], genome)
+          if @mers.length == 0
+            @mers = Mer14.start_search(params[:search], genome)
+          end
+        when (params[:search] =~ /\A\d+\s\-\s\d+\z/ ? true : false)
+          queries = params[:search].strip.split(/\s+/)
+          @mers = Mer14.range_search(queries[0].to_i, queries[2].to_i, genome)
+        when (params[:search] =~ /\A[ATCGatcg\W]+\z/ ? true : false)
+          params[:search] = params[:search].gsub(/\W/, "").upcase
+          @mers = Mer14.sequence_search(params[:search], genome)
+        else
         flash.now[:alert] = 'Incorrect search - Seek help'
       end
     end
@@ -50,6 +48,7 @@ class Mer20sController < ApplicationController
   def edit
   end
 
+  # THIS HAS BE REDIRECTED - SEE ROUTES.RB
   # POST /mer20s
   # POST /mer20s.json
   def create
