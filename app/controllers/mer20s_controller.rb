@@ -4,6 +4,7 @@ class Mer20sController < ApplicationController
   # POST /mer20s
   # POST /mer20s.json
   def index
+    # Checkboxes, determines which genomes are searched: 0 = all
     genome = 0
     if params[:search_DSM]
       genome = 1
@@ -15,21 +16,27 @@ class Mer20sController < ApplicationController
       genome = 0
     end 
 
+    # case for different search types.
     if params[:search]
+      @mers = []
       case 
+        # Start search.
         when (params[:search] =~ /\A\d+\z/ ? true : false) 
           @mers = Mer20.start_search(params[:search], genome)
           if @mers.length == 0
             @mers = Mer14.start_search(params[:search], genome)
           end
+        # Range search.
         when (params[:search] =~ /\A\d+\s\-\s\d+\z/ ? true : false)
           queries = params[:search].strip.split(/\s+/)
           @mers = Mer14.range_search(queries[0].to_i, queries[2].to_i, genome)
+        # Sequence search.
         when (params[:search] =~ /\A[ATCGatcg\W]+\z/ ? true : false)
           params[:search] = params[:search].gsub(/\W/, "").upcase
           @mers = Mer14.sequence_search(params[:search], genome)
+        # Failure, error out. 
         else
-        flash.now[:alert] = 'Incorrect search - Seek help'
+        flash.now[:alert] = 'Incorrect search parameters - Seek help'
       end
     end
   end

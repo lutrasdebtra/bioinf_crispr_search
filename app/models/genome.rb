@@ -4,6 +4,7 @@ class Genome < ActiveRecord::Base
 
 	has_many :mer14, :through => :mer20
 
+  # Gets related 20/14 mers for an array of mer objects. 
 	def self.getRelation(mer)
 		set = []
 		mer.each do |m|
@@ -17,12 +18,14 @@ class Genome < ActiveRecord::Base
   		return set.uniq
 	end
 
+  # Splits up the starting position string.
 	def self.splitStarts(starts)
   	  if starts
   	    return starts.gsub "|", ",\n" 
   	  end
   end
 
+  # Checks for matches, so they can be highlighted in results. 
   def self.isMatch(query, mer)
     if mer.sequence == query
       return true

@@ -2,6 +2,7 @@ class Mer20 < ActiveRecord::Base
 	has_many :mer14, :dependent => :destroy
 	accepts_nested_attributes_for :mer14, :allow_destroy => true 
 
+  # Depreciated, using Mer14 sequence search. 
 	def self.search_mer(query, genome)
       if genome == 0
       	mer = where("sequence = ?", query) 
@@ -11,6 +12,7 @@ class Mer20 < ActiveRecord::Base
       return Genome.getRelation(mer)
   	end
 
+    # Start search for Mer20
   	def self.start_search(query, genome)
       if genome == 0
       	mer = where("leading = ? OR lagging = ? OR leading like ? OR lagging like ? OR leading like ? OR lagging like ? OR leading like ? OR lagging like ?", query.to_i, query.to_i, "#{query}|%", "#{query}|%", "%|#{query}|%", "%|#{query}|%", "%|#{query}", "%|#{query}") 
