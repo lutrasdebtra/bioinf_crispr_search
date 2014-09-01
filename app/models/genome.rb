@@ -21,5 +21,25 @@ class Genome < ActiveRecord::Base
   	  if starts
   	    return starts.gsub "|", ",\n" 
   	  end
-  	end
+  end
+
+  def self.isMatch(query, mer)
+    if mer.sequence == query
+      return true
+    end
+    if mer.leading
+      leading_array = mer.leading.split(/\|/)
+      if leading_array.include?(query)
+        return true
+      end
+    end
+    if mer.lagging
+      lagging_array = mer.lagging.split(/\|/)
+      if lagging_array.include?(query)
+        return true
+      end
+    end
+    return false
+  end
+
 end

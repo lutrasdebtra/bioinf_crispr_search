@@ -16,7 +16,15 @@ class Mer14 < ActiveRecord::Base
       else 
       	mer = where("genome_id = ?", genome.to_i).where("leading = ? OR lagging = ? OR leading like ? OR lagging like ? OR leading like ? OR lagging like ? OR leading like ? OR lagging like ?", query.to_i, query.to_i, "#{query}|%", "#{query}|%", "%|#{query}|%", "%|#{query}|%", "%|#{query}", "%|#{query}") 
       end
-
       return Genome.getRelation(mer)
   	end
+
+  	def self.range_search(start, stop, genome)
+  	  if genome == 0
+      	mer = where("rmin >= ?", start).where("rmax <= ?", stop)
+      else 
+      	mer = where("genome_id = ?", genome.to_i).where("rmin >= ?", start).where("rmax <= ?", stop)
+      end
+      return Genome.getRelation(mer)
+    end
 end

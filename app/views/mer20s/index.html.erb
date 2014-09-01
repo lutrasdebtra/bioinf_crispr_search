@@ -13,7 +13,7 @@
 
     <tbody>
       <% @mers.each do |mer| %>
-        <% if mer.sequence == params[:search]  or mer.leading == params[:search] or mer.lagging == params[:search]%>
+        <% if Genome.isMatch(params[:search], mer)%>
           <tr class = "success">
         <% else %>
           <tr>

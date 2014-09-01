@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140827013109) do
+ActiveRecord::Schema.define(version: 20140831215251) do
 
   create_table "genomes", force: true do |t|
     t.string   "name"
@@ -27,6 +27,8 @@ ActiveRecord::Schema.define(version: 20140827013109) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "genome_id"
+    t.integer  "rmax"
+    t.integer  "rmin"
   end
 
   create_table "mer20s", force: true do |t|
