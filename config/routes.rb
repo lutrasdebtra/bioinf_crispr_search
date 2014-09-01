@@ -1,4 +1,5 @@
 BioinfCrisprSearch::Application.routes.draw do
+  match '/mer20s',  to: "mer20s#index", via: :post
   resources :mer20s
 
   root "mer20s#index"

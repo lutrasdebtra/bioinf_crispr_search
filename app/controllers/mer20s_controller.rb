@@ -17,9 +17,9 @@ class Mer20sController < ApplicationController
 
     if params[:search]
       if params[:search].length == 23
-        @mers = Mer20.search_mer(params[:search], genome)
+        @mers = Mer20.search_mer(params[:search].upcase!, genome)
       elsif params[:search].length == 14
-        @mers = Mer14.search_mer(params[:search], genome)
+        @mers = Mer14.search_mer(params[:search].upcase!, genome)
       elsif (params[:search] =~ /\A\d+\z/ ? true : false) 
         @mers = Mer20.start_search(params[:search], genome)
         if @mers.length == 0
@@ -28,8 +28,8 @@ class Mer20sController < ApplicationController
       elsif (params[:search] =~ /\A\d+\s\-\s\d+\z/ ? true : false)
         queries = params[:search].strip.split(/\s+/)
         @mers = Mer14.range_search(queries[0].to_i, queries[2].to_i, genome)
-      elsif (params[:search] =~ /\A[ATCGatcg]+\z/ ? true : false)
-        @mers = Mer14.sequence_search(params[:search], genome)
+      elsif (params[:search] =~ /\A[ATCGatcg\W]+\z/ ? true : false)
+        @mers = Mer14.sequence_search(params[:search].gsub!(/\W/, "").upcase!, genome)
       else
         flash.now[:alert] = 'Incorrect search - Seek help'
       end

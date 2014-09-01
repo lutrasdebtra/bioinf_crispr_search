@@ -11,7 +11,7 @@
 <br />
 <body>
   <!-- When submit the form, the view rendered will be the index view of our articles resource -->
-  <%= form_tag(mer20s_path, :method => "get", class: "form-group col-md-6 col-md-offset-3", id: "search-form") do %>
+  <%= form_tag(mer20s_path, :method => "post", class: "form-group col-md-6 col-md-offset-3", id: "search-form") do %>
     <%= text_field_tag :search, params[:search], class: "form-control input-lg", placeholder: "Search Sequences" %>
     <br >
     <div class = "checkbox-inline">
