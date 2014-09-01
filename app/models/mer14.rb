@@ -27,4 +27,23 @@ class Mer14 < ActiveRecord::Base
       end
       return Genome.getRelation(mer)
     end
+
+    def self.sequence_search(query, genome)
+      mer = []
+      if genome == 0
+      	Mer14.find_each do |m| 
+      	  if query.include?(m.sequence)
+      	  	mer << m
+      	  end
+      	end 
+      else 
+      	mers = where("genome_id = ?", genome.to_i)
+      	mers.each do |m|
+      	  if query.include?(m.sequence)
+      	    mer << m
+      	  end
+      	end 
+      end
+      return Genome.getRelation(mer)
+    end
 end

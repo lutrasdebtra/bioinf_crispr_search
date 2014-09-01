@@ -39,6 +39,11 @@ class Genome < ActiveRecord::Base
         return true
       end
     end
+
+    if query.include?(mer.sequence)
+      return true
+    end
+
     return false
   end
 

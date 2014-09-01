@@ -28,6 +28,8 @@ class Mer20sController < ApplicationController
       elsif (params[:search] =~ /\A\d+\s\-\s\d+\z/ ? true : false)
         queries = params[:search].strip.split(/\s+/)
         @mers = Mer14.range_search(queries[0].to_i, queries[2].to_i, genome)
+      elsif (params[:search] =~ /\A[ATCGatcg]+\z/ ? true : false)
+        @mers = Mer14.sequence_search(params[:search], genome)
       else
         flash.now[:alert] = 'Incorrect search - Seek help'
       end
