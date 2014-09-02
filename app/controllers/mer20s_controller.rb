@@ -4,6 +4,7 @@ class Mer20sController < ApplicationController
   # POST /mer20s
   # POST /mer20s.json
   def index
+  	@mers = []
     # Checkboxes, determines which genomes are searched: 0 = all
     genome = 0
     if params[:search_DSM]
@@ -18,7 +19,6 @@ class Mer20sController < ApplicationController
 
     # case for different search types.
     if params[:search]
-      @mers = []
       case 
         # Start search.
         when (params[:search] =~ /\A\d+\z/ ? true : false) 
