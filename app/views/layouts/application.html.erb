@@ -12,7 +12,11 @@
 <body>
   <!-- When submit the form, the view rendered will be the index view of our articles resource -->
   <%= form_tag(mer20s_path, :method => "post", class: "form-group col-md-6 col-md-offset-3", id: "search-form") do %>
-    <%= text_field_tag :search, params[:search], class: "form-control input-lg", placeholder: "Search Sequences" %>
+    <div class = "form-inline">
+    <%= text_field_tag :search, params[:search], class: "form-control input-lg", placeholder: "Search Sequences", style: "width: 91.5%" %>
+    <button type="button" class="btn btn-lg btn-info" data-container="body" data-toggle="popover" data-placement="right" data-content="Input a DNA sequence (without a FASTA header), and the results returned will be matches to CRISPR sequences in the selected genomes.">Help
+    </button>
+    </div>
     <br >
     <div class = "checkbox-inline">
       <label>

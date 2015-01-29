@@ -12,5 +12,20 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require bootstrap
 //= require turbolinks
 //= require_tree .
+
+$(window).load(function(){
+//tooltip, by default, activated by hover event
+ $('body').tooltip({   
+   selector: '[data-toggle=tooltip]',
+   container: 'body'
+ });
+
+//popover, by default, activated with clicking {toggle}
+ $('body').popover({   
+   selector: '[data-toggle=popover]',
+   container: 'body'
+ });
+});
