@@ -2,6 +2,8 @@
 
 A somewhat specific tool that uses user inputed sequence (or fasta files), to locate CRISPR sequences inside either E. Coli or a specific Clostridium strain. 
 
+![Example](https://raw.github.com/lutrasdebtra/bioinf_crispr_search/master/splash.png)
+
 ## Initalizing CRISPR Search
 
 The web application itself is a simple Rails App and requires no more setup than:
