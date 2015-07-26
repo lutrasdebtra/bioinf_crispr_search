@@ -13,7 +13,7 @@ The initial seed process will take some time. What happens is the seed file proc
 ## Adding New Organisms
 
 To add a new organism to the search system, four things need to happen:
-1.  Inside `/lib/data/` there is a file called `NGG20.py`. This file takes a fasta file of sequence and finds all CRISPR sequences, before outputting to a CSV file. 
-2.  The `seeds.rb` file needs to be updated to add the newly created CSV file. This can easily be done by changing the file name in the seed file to the new CSV.
-3.  A new checkbox needs to added to `/app/views/layouts/application.html.erb/`. It is a relatively straight-forward process, and the code in the file can be reused. The number parameter that is sent to the controller will need to be the same as the genome id in the database..
-4.  The controller in `/app/controllers/mer20s_controller.rb/` must be modifed to do the search based on the new parameter. Currently, it is designed for two genomes, but could easily be expanded for many more. 
+1. Inside `/lib/data/` there is a file called `NGG20.py`. This file takes a fasta file of sequence and finds all CRISPR sequences, before outputting to a CSV file. 
+2. The `seeds.rb` file needs to be updated to add the newly created CSV file. This can easily be done by changing the file name in the seed file to the new CSV.
+3. A new checkbox needs to added to `/app/views/layouts/application.html.erb/`. It is a relatively straight-forward process, and the code in the file can be reused. The number parameter that is sent to the controller will need to be the same as the genome id in the database..
+4. The controller in `/app/controllers/mer20s_controller.rb/` must be modifed to do the search based on the new parameter. Currently, it is designed for two genomes, but could easily be expanded for many more. 
